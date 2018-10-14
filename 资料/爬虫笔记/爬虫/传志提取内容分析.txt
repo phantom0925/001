@@ -1,0 +1,8 @@
+teacher_list = response.xpath('//div[@class="li_txt"]')
+for each in teacher_list: 
+	#name
+	each.xpath('./h3/text()')
+	#title
+	each.xpath('./h4/text()')
+	#info
+	each.xpath('./p/text()')

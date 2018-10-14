@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>websocket</title>
+	<script src="{{static_url('js/jquery.min.js')}}"></script>
+	<script type="text/javascript">
+		vs ws = new WebSocket("ws:192.168.43.243:8000/chat");
+
+		ws.onmessage = function(data){
+
+			$("#contents").append("<p>"+ data.data +"</p>");
+		};
+
+		function sendMsg(){
+
+			var msg = $("#msg").val();
+
+			if(msg){
+				ws.send(msg);
+			};
+		};
+
+	</script>
+
+
+	<style type="text/css">
+		body,ul,p,h1,h2,h3,h4,h5,h6,dl,dd,input,select,form{
+		margin: 0;
+		padding: 0;
+		}
+
+
+		.zong{
+			margin: 100px;
+			position: relative;
+			height: 800px;
+			width: 400px;
+			background-color:cyan;
+		}
+
+		.two{
+			position: absolute;
+			height:100;
+			width: 400;
+			background-color: red;
+			margin-top:700px;
+			float: right;
+		}
+		/* 清除浮动样式类 */
+
+		.clearfix:before,.clearfix:after{
+			content: "";
+			display: table;
+		}
+
+		.clearfix:after{
+			clear: both;
+		}
+		/* 为了兼容IE浏览器 */
+		.clearfix{
+			zoom:1;
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<div class="zong" id="contents">
+		<div class="two">
+			<textarea id="msg" style="float: left"></textarea>
+			<a href="javascript:;" style="float:right" onclick="sendMsg()">发送</a>
+		</div>
+	</div>
+
+</body>
+</html>

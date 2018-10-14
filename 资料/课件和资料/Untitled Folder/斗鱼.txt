@@ -1,0 +1,19 @@
+class="shark-pager-next"
+class="shark-pager-next shark-pager-disable shark-pager-disable-next"
+if  driver.page_source.find("shark-pager-disable-next") != -1:
+	break
+
+标题
+<h3 class="ellipsis">大嘎猴啊！！</h3>
+昵称
+<span class="dy-name ellipsis fl">呆妹儿小霸王</span>
+find_all("span",{"class":"dy-name ellipsis fl"})
+观看人数
+<span class="dy-num fr">110.3万</span>
+find_all("span",{"class":"dy-num fr"})
+
+收藏运维网址
+
+https://www.howtoing.com/tesseract-ocr-installation-and-usage-on-ubuntu-16-04
+
+https://www.cnblogs.com/zhishuai/p/7851977.html

@@ -1,0 +1,9 @@
+#标题
+//div[@class="info"]//span[@class="title"][1]/text()
+#电影信息
+//div[@class="info"]/div[@class="bd"][1]/p[1]/text()
+#评分
+//div[@class="info"]//div[@class="star"]/span[@class="rating_num"]/text()
+#简介
+//div[@class="info"]//p[@class="quote"]/span/text()
+

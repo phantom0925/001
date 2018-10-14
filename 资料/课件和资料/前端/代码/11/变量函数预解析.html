@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+
+		/*JavaScript解析过程分为两个阶段，先是编译阶段，然后执行阶段，在编译阶段会将function定义的函数提前，并且将var定义的变量声明提前，将它赋值为undefined。*/
+		alert(a);
+
+		var a = 123;
+
+		myalert();
+
+		function myalert(){
+			alert('hello!');
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

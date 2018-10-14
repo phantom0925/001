@@ -1,0 +1,426 @@
+[E 180918 20:00:53 torndb:103] Cannot connect to MySQL on 127.0.0.1
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/torndb.py", line 100, in __init__
+        self.reconnect()
+      File "/usr/local/lib/python2.7/dist-packages/torndb.py", line 117, in reconnect
+        self._db = MySQLdb.connect(**self._db_args)
+      File "/usr/local/lib/python2.7/dist-packages/MySQLdb/__init__.py", line 81, in Connect
+        return Connection(*args, **kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/MySQLdb/connections.py", line 193, in __init__
+        super(Connection, self).__init__(*args, **kwargs2)
+    OperationalError: (1049, "Unknown database 'ihome'")
+[E 180918 20:01:19 torndb:103] Cannot connect to MySQL on 127.0.0.1
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/torndb.py", line 100, in __init__
+        self.reconnect()
+      File "/usr/local/lib/python2.7/dist-packages/torndb.py", line 117, in reconnect
+        self._db = MySQLdb.connect(**self._db_args)
+      File "/usr/local/lib/python2.7/dist-packages/MySQLdb/__init__.py", line 81, in Connect
+        return Connection(*args, **kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/MySQLdb/connections.py", line 193, in __init__
+        super(Connection, self).__init__(*args, **kwargs2)
+    OperationalError: (1049, "Unknown database 'ihome'")
+[E 180918 20:02:23 web:1670] Uncaught exception GET / (127.0.0.1)
+    HTTPServerRequest(protocol='http', host='127.0.0.1:8000', method='GET', uri='/', version='HTTP/1.1', remote_ip='127.0.0.1')
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 1592, in _execute
+        result = yield result
+      File "/usr/local/lib/python2.7/dist-packages/tornado/gen.py", line 1133, in run
+        value = future.result()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/concurrent.py", line 261, in result
+        raise_exc_info(self._exc_info)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/gen.py", line 326, in wrapper
+        yielded = next(result)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2463, in get
+        absolute_path = self.get_absolute_path(self.root, self.path)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2607, in get_absolute_path
+        abspath = os.path.abspath(os.path.join(root, path))
+      File "/usr/lib/python2.7/posixpath.py", line 73, in join
+        path += '/' + b
+    UnicodeDecodeError: 'ascii' codec can't decode byte 0xe7 in position 22: ordinal not in range(128)
+[E 180918 20:02:23 web:2162] 500 GET / (127.0.0.1) 220.52ms
+[I 180918 20:03:49 autoreload:199] server.py modified; restarting server
+[E 180918 20:03:53 torndb:103] Cannot connect to MySQL on 127.0.0.1
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/torndb.py", line 100, in __init__
+        self.reconnect()
+      File "/usr/local/lib/python2.7/dist-packages/torndb.py", line 117, in reconnect
+        self._db = MySQLdb.connect(**self._db_args)
+      File "/usr/local/lib/python2.7/dist-packages/MySQLdb/__init__.py", line 81, in Connect
+        return Connection(*args, **kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/MySQLdb/connections.py", line 193, in __init__
+        super(Connection, self).__init__(*args, **kwargs2)
+    OperationalError: (1049, "Unknown database 'ihome'")
+[I 180918 20:04:07 web:2162] 200 GET / (127.0.0.1) 113.28ms
+[I 180918 20:04:07 web:2162] 200 GET /static/plugins/swiper/css/swiper.min.css (127.0.0.1) 71.58ms
+[I 180918 20:04:07 web:2162] 200 GET /static/css/ihome/index.css (127.0.0.1) 32.30ms
+[I 180918 20:04:07 web:2162] 200 GET /static/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css (127.0.0.1) 14.42ms
+[I 180918 20:04:07 web:2162] 200 GET /static/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js (127.0.0.1) 109.53ms
+[I 180918 20:04:07 web:2162] 200 GET /static/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js (127.0.0.1) 30.48ms
+[I 180918 20:04:07 web:2162] 304 GET /static/css/ihome/main.css (127.0.0.1) 21.79ms
+[I 180918 20:04:07 web:2162] 200 GET /static/js/ihome/index.js (127.0.0.1) 42.44ms
+[I 180918 20:04:07 web:2162] 304 GET /static/images/logo@128x59.png (127.0.0.1) 46.63ms
+[I 180918 20:04:07 web:2162] 200 GET /static/plugins/swiper/js/swiper.jquery.min.js (127.0.0.1) 308.44ms
+[I 180918 20:04:07 web:2162] 200 GET /static/js/template.js (127.0.0.1) 21.33ms
+[W 180918 20:04:08 web:2162] 404 GET /api/check_login (127.0.0.1) 8.32ms
+[W 180918 20:04:08 web:2162] 404 GET /api/house/index (127.0.0.1) 3.23ms
+[I 180918 20:04:09 web:2162] 304 GET / (127.0.0.1) 2.70ms
+[W 180918 20:04:09 web:2162] 404 GET /api/check_login (127.0.0.1) 4.08ms
+[W 180918 20:04:09 web:2162] 404 GET /api/house/index (127.0.0.1) 2.83ms
+[E 180918 20:05:00 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:00 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:00 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:00 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:00 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:00 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:00 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:01 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:06 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:06 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:07 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:07 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:07 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:05:37 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:06:38 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:06:38 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:06:38 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:06:46 torndb:103] Cannot connect to MySQL on 127.0.0.1
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/torndb.py", line 100, in __init__
+        self.reconnect()
+      File "/usr/local/lib/python2.7/dist-packages/torndb.py", line 117, in reconnect
+        self._db = MySQLdb.connect(**self._db_args)
+      File "/usr/local/lib/python2.7/dist-packages/MySQLdb/__init__.py", line 81, in Connect
+        return Connection(*args, **kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/MySQLdb/connections.py", line 193, in __init__
+        super(Connection, self).__init__(*args, **kwargs2)
+    OperationalError: (1049, "Unknown database 'ihome'")
+[E 180918 20:10:29 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:10:29 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[E 180918 20:10:29 http1connection:55] Uncaught exception
+    Traceback (most recent call last):
+      File "/usr/local/lib/python2.7/dist-packages/tornado/http1connection.py", line 238, in _read_message
+        delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/routing.py", line 256, in finish
+        self.delegate.finish()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2195, in finish
+        self.execute()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 2215, in execute
+        **self.handler_kwargs)
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 192, in __init__
+        self.clear()
+      File "/usr/local/lib/python2.7/dist-packages/tornado/web.py", line 296, in clear
+        self.set_default_headers()
+      File "/home/phantom/Desktop/练习/handlers/BaseHandler.py", line 23, in set_default_headers
+        passd
+    NameError: global name 'passd' is not defined
+[I 180918 20:11:19 autoreload:199] /home/phantom/Desktop/练习/handlers/BaseHandler.py modified; restarting server
+[I 180918 20:11:33 web:2162] 200 GET /api/piccode?cur=123&pre= (127.0.0.1) 338.46ms
+[I 180918 20:11:39 web:2162] 200 GET /api/piccode?cur=123&pre= (127.0.0.1) 29.65ms
+[I 180918 20:11:41 web:2162] 200 GET /api/piccode?cur=123&pre= (127.0.0.1) 35.34ms
+[I 180918 20:11:43 web:2162] 200 GET /api/piccode?cur=123&pre= (127.0.0.1) 27.57ms
+[W 180918 20:12:01 web:2162] 404 GET /login (127.0.0.1) 20.00ms

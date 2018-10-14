@@ -1,0 +1,279 @@
+一、手动更新IP池
+
+
+
+1.在settings配置文件中新增IP池:
+
+
+
+IPPOOL=[
+	{"ipaddr":"61.129.70.131:8080"},
+	{"ipaddr":"61.152.81.193:9100"},
+	{"ipaddr":"120.204.85.29:3128"},
+	{"ipaddr":"219.228.126.86:8123"},
+	{"ipaddr":"61.152.81.193:9100"},
+	{"ipaddr":"218.82.33.225:53853"},
+	{"ipaddr":"223.167.190.17:42789"}
+]
+
+这些IP可以从这个几个网站获取:快代理、代理66、有代理、西刺代理、guobanjia。如果出现像下面这种提示:"由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败"或者是这种，" 由 于目标计算机积极拒绝，无法连接。". 那就是IP的问题，更换就行了。。。。发现上面好多IP都不能用。。
+
+
+在Scrapy中与代理服务器设置相关的下载中间件是HttpProxyMiddleware，对应的类为:
+
+scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware
+
+
+2.修改中间件文件middlewares.py
+
+
+
+
+# -*- coding: utf-8 -*-
+ 
+# Define here the models for your spider middleware
+#
+# See documentation in:
+# http://doc.scrapy.org/en/latest/topics/spider-middleware.html
+ 
+import random
+from scrapy import signals
+from myproxies.settings import IPPOOL
+ 
+class MyproxiesSpiderMiddleware(object):
+ 
+      def __init__(self,ip=''):
+          self.ip=ip
+       
+      def process_request(self, request, spider):
+          thisip=random.choice(IPPOOL)
+          print("this is ip:"+thisip["ipaddr"])
+          request.meta["proxy"]="http://"+thisip["ipaddr"]
+
+
+3.在settings中设置DOWNLOADER_MIDDLEWARES
+
+
+DOWNLOADER_MIDDLEWARES = {
+#    'myproxies.middlewares.MyCustomDownloaderMiddleware': 543,
+     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware':543,
+     'myproxies.middlewares.MyproxiesSpiderMiddleware':125
+}
+
+
+4.爬虫文件为
+
+
+# -*- coding: utf-8 -*-
+import scrapy
+ 
+ 
+class ProxieSpider(scrapy.Spider):
+ 
+ 
+    def __init__(self):
+        self.headers = {
+            'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
+            'Accept-Encoding':'gzip, deflate',
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+        }
+ 
+ 
+    name = "proxie"
+    allowed_domains = ["sina.com.cn"]
+    start_urls = ['http://news.sina.com.cn/']
+ 
+    def parse(self, response):
+        print(response.body)
+
+
+5.运行爬虫
+
+
+scrapy crawl proxie
+
+二、自动更新IP池
+
+
+
+这里写个自动获取IP的类proxies.py，执行一下把获取的IP保存到txt文件中去:
+
+
+
+
+# *-* coding:utf-8 *-*
+import requests
+from bs4 import BeautifulSoup
+import lxml
+from multiprocessing import Process, Queue
+import random
+import json
+import time
+import requests
+ 
+class Proxies(object):
+ 
+ 
+    """docstring for Proxies"""
+    def __init__(self, page=3):
+        self.proxies = []
+        self.verify_pro = []
+        self.page = page
+        self.headers = {
+        'Accept': '*/*',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+        'Accept-Encoding': 'gzip, deflate, sdch',
+        'Accept-Language': 'zh-CN,zh;q=0.8'
+        }
+        self.get_proxies()
+        self.get_proxies_nn()
+ 
+    def get_proxies(self):
+        page = random.randint(1,10)
+        page_stop = page + self.page
+        while page < page_stop:
+            url = 'http://www.xicidaili.com/nt/%d' % page
+            html = requests.get(url, headers=self.headers).content
+            soup = BeautifulSoup(html, 'lxml')
+            ip_list = soup.find(id='ip_list')
+            for odd in ip_list.find_all(class_='odd'):
+                protocol = odd.find_all('td')[5].get_text().lower()+'://'
+                self.proxies.append(protocol + ':'.join([x.get_text() for x in odd.find_all('td')[1:3]]))
+            page += 1
+ 
+    def get_proxies_nn(self):
+        page = random.randint(1,10)
+        page_stop = page + self.page
+        while page < page_stop:
+            url = 'http://www.xicidaili.com/nn/%d' % page
+            html = requests.get(url, headers=self.headers).content
+            soup = BeautifulSoup(html, 'lxml')
+            ip_list = soup.find(id='ip_list')
+            for odd in ip_list.find_all(class_='odd'):
+                protocol = odd.find_all('td')[5].get_text().lower() + '://'
+                self.proxies.append(protocol + ':'.join([x.get_text() for x in odd.find_all('td')[1:3]]))
+            page += 1
+ 
+    def verify_proxies(self):
+        # 没验证的代理
+        old_queue = Queue()
+        # 验证后的代理
+        new_queue = Queue()
+        print ('verify proxy........')
+        works = []
+        for _ in range(15):
+            works.append(Process(target=self.verify_one_proxy, args=(old_queue,new_queue)))
+        for work in works:
+            work.start()
+        for proxy in self.proxies:
+            old_queue.put(proxy)
+        for work in works:
+            old_queue.put(0)
+        for work in works:
+            work.join()
+        self.proxies = []
+        while 1:
+            try:
+                self.proxies.append(new_queue.get(timeout=1))
+            except:
+                break
+        print ('verify_proxies done!')
+ 
+ 
+    def verify_one_proxy(self, old_queue, new_queue):
+        while 1:
+            proxy = old_queue.get()
+            if proxy == 0:break
+            protocol = 'https' if 'https' in proxy else 'http'
+            proxies = {protocol: proxy}
+            try:
+                if requests.get('http://www.baidu.com', proxies=proxies, timeout=2).status_code == 200:
+                    print ('success %s' % proxy)
+                    new_queue.put(proxy)
+            except:
+                print ('fail %s' % proxy)
+ 
+ 
+if __name__ == '__main__':
+    a = Proxies()
+    a.verify_proxies()
+    print (a.proxies)
+    proxie = a.proxies 
+    with open('proxies.txt', 'a') as f:
+       for proxy in proxie:
+             f.write(proxy+'\n')
+
+
+执行一下:  python  proxies.py
+
+
+
+
+
+
+
+这些IP就会保存到proxies.txt文件中去
+
+
+
+
+
+
+
+修改代理文件middlewares.py的内容为如下:
+
+
+import random
+import scrapy
+from scrapy import log
+ 
+ 
+# logger = logging.getLogger()
+ 
+class ProxyMiddleWare(object):
+	"""docstring for ProxyMiddleWare"""
+	def process_request(self,request, spider):
+		'''对request对象加上proxy'''
+		proxy = self.get_random_proxy()
+		print("this is request ip:"+proxy)
+		request.meta['proxy'] = proxy 
+ 
+ 
+	def process_response(self, request, response, spider):
+		'''对返回的response处理'''
+		# 如果返回的response状态不是200，重新生成当前request对象
+		if response.status != 200:
+			proxy = self.get_random_proxy()
+			print("this is response ip:"+proxy)
+			# 对当前reque加上代理
+			request.meta['proxy'] = proxy 
+			return request
+		return response
+ 
+	def get_random_proxy(self):
+		'''随机从文件中读取proxy'''
+		while 1:
+			with open('G:\\Scrapy_work\\myproxies\\myproxies\\proxies.txt', 'r') as f:
+				proxies = f.readlines()
+			if proxies:
+				break
+			else:
+				time.sleep(1)
+		proxy = random.choice(proxies).strip()
+		return proxy
+
+修改下settings文件
+
+
+DOWNLOADER_MIDDLEWARES = {
+#    'myproxies.middlewares.MyCustomDownloaderMiddleware': 543,
+     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware':None,
+     'myproxies.middlewares.ProxyMiddleWare':125,
+     'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware':None
+}
+
+运行爬虫:
+
+scrapy crawl proxie
+
+

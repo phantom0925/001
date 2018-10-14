@@ -1,0 +1,68 @@
+
+今天在使用selenium+PhantomJS动态抓取网页时，出现如下报错信息：
+
+UserWarning: Selenium support for PhantomJS has been deprecated, please use headless versions of Chrome or Firefox instead
+  warnings.warn('Selenium support for PhantomJS has been deprecated, please use headless '
+1
+2
+翻译过来就是：
+
+selenium已经放弃PhantomJS，了，建议使用火狐或者谷歌无界面浏览器。
+1
+解决方案
+selenium版本降级
+通过pip show selenium显示，默认安装版本为3.8.1。 
+将其卸载pip uninstall selenium，重新安装并指定版本号pip install selenium==2.48.0。 
+再次运行，发现没有报错，搞定！
+
+使用无界面浏览器
+Selenium+Headless Firefox
+Selenium+Headless Firefox和Selenium+Firefox，区别就是实例option的时候设置-headless参数。
+
+前提条件： 
+- 本地安装Firefox浏览器 
+- 本地需要geckodriver驱动器文件，如果不配置环境变量的话，需要手动指定executable_path参数。
+
+示例代码：
+
+from selenium.webdriver import Firefox
+from selenium.webdriver.firefox.options import Options
+
+
+def main():
+    options = Options()
+    options.add_argument('-headless')
+    driver = Firefox(executable_path='./geckodriver', firefox_options=options)
+    driver.get("https://www.qiushibaike.com/8hr/page/1/")
+    print(driver.page_source)
+    driver.close()
+
+
+if __name__ == '__main__':
+    main()
+Selenium+Headless Chrome
+与Firefox类似，双手奉上。
+
+前提条件： 
+- 本地安装Chrome浏览器 
+- 本地需要chromedriver驱动器文件，如果不配置环境变量的话，需要手动指定executable_path参数。
+
+示例：
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+
+def main():
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+    driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=chrome_options)
+    driver.get("https://www.baidu.com")
+    print(driver.page_source)
+    driver.close()
+
+
+if __name__ == '__main__':
+    main()
+如上，完美解决~

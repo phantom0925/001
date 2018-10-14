@@ -1,0 +1,58 @@
+#产品当页
+https://tsingtao.m.tmall.com/shop/shop_auction_search.do
+
+思路:
+	1.https://tsingtao.m.tmall.com/shop/shop_auction_search.do
+	2.从一提取出链接===>然后提取出id
+	3.拼接链接https://h5api.m.taobao.com/h5/mtop.taobao.detail.getdetail/6.0/?data=%7B"itemNumId"%3A"35597367149"%7D
+https://h5api.m.taobao.com/h5/mtop.taobao.detail.getdetail/6.0/?data=%7B"itemNumId"%3A"38866727380"%7D
+
+
+#解析出id
+import json
+
+js =json.loads(response.body)
+items = js['items']
+ids = []
+for i in items:
+    id = i['item_id']
+    ids.append(id)
+
+import json
+data = json.loads(data)
+#剥离
+data = data["data"]
+Item = data['item']
+#标题
+title = Item['title']
+#副标题
+subtitle = Item['subtitle']
+#价格
+mockData = data['mockData']
+mockData = json.loads(mockData)
+price = mockData["price"]["price"]["priceText"]
+#活动价格
+apiStack = data['apiStack']
+for i in apiStack:
+    value = i['value']
+
+#销量
+value = json.loads(value)
+sellCount = value['item']['sellCount']
+#促销价
+promotion_price = value['price']['price']['priceText']
+#
+
+info = data['props']['groupProps']
+for i in info:
+    info = i
+#产品信息===>然后把每条数据读出来写入就好了
+key = "基本信息"
+key = unicode(key,"unt8")
+product_info = info[key]
+
+#总评价数目
+commentCount = data['rate']['totalCount']
+#评价细分
+comment = data['rate']['keywords']
+

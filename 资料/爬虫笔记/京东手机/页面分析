@@ -1,0 +1,65 @@
+#起始url
+url = "http://search.jd.com/Search?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8&qrst=1&rt=1&stop=1&spm=2.1.1&vt=2&psort=3&cid2=653&cid3=655"
+#翻页
+page= -1
+s = -59
+while page<199:
+	page += 2
+	s += 60
+	fullurl =  url + "&page" + str(page) + "&s" + str(s) + "&click=0"
+
+#获取每一页带评论的链接
+//strong/a/@href
+
+from bs4 import BeautifulSoup
+from selenium import webdriver
+url = "http://item.jd.com/7694047.html#comment"
+driver = webdriver.PhantomJS()
+driver.maximize_window()
+driver.get(url)
+data = driver.page_source
+soup = BeautifulSoup(data, 'lxml')
+#标题
+title = soup.find('div',{'class':"sku-name"}).get_text().strip()
+#价格
+price = soup.find('span',{'class':"price J-p-7694047"}).get_text()
+#评论
+comment = soup.find('a',{'clstag':"shangpin|keycount|product|allpingjia_tuijianpaixu_NOTHING"}).get_text()
+
+#coding:utf-8
+ 
+from selenium import webdriver
+from bs4 import BeautifulSoup
+import urllib2
+import re
+import sys
+import codecs
+import json
+import random
+from time import sleep
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.common.proxy import Proxy
+from selenium.webdriver.common.proxy import ProxyType
+#全局设置浏览器驱动
+global driver
+ 
+#调用api获取代理ip列表
+def GetProxyIP(api):
+     request = urllib2.Request(api)
+     response = urllib2.urlopen(request)
+     result = response.read()
+     obj = json.loads(result)
+     ipAddress = list(obj['msg'])
+     return ipAddress
+ 
+#调用PHANTOMJS设置代理IP
+def SetProxyIP(count,ipAddress):
+    address = ipAddress[count]
+    ip = address['ip']
+    port = address['port']
+    script = "phantom.setProxy('{ip}',{port})".format(ip=ip,port=port)
+
+
+---------------------
+
+本文来自 cg_Amaz1ng 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/cg_amaz1ng/article/details/79777116?utm_source=copy 
